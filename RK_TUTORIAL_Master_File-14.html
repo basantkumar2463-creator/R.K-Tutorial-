@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R.K TUTORIAL — Master File</title>
+<style>
+:root{--blue:#155eef;--navy:#10264d;--bg:#f4f7fc;--ink:#172033;--muted:#64748b;--line:#e2e8f0;--white:#fff;--green:#138a52}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:11px 14px;font-weight:700}.primary{background:var(--blue);color:#fff}.secondary{background:#eaf0ff;color:var(--navy)}.danger{background:#fee2e2;color:#991b1b}.muted{color:var(--muted)}.wrap{max-width:980px;margin:auto;padding:16px}.brand{background:linear-gradient(135deg,#12316a,#1769e0);color:#fff;padding:22px;border-radius:18px;display:flex;align-items:center;gap:14px}.logo{width:58px;height:58px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;font-size:25px;font-weight:900;flex-shrink:0}.brand h1{margin:0;font-size:23px}.brand p{margin:5px 0 0;letter-spacing:1px;font-size:12px}.notice{margin:12px 0;background:#fff7db;border:1px solid #f4d67b;border-radius:12px;padding:12px;font-size:13px;line-height:1.45}.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;margin-top:14px;box-shadow:0 3px 12px #10264d08}.card h2,.card h3{margin:0 0 12px;color:var(--navy)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.field{margin:10px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input,.field select,.field textarea,input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:var(--ink)}.field textarea{min-height:80px;resize:vertical}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.rolebtn{min-height:88px;text-align:left;background:#f0f5ff;color:var(--navy);border:1px solid #d9e5ff}.rolebtn span{display:block;font-size:12px;font-weight:400;margin-top:7px;color:var(--muted)}.tabs{display:flex;gap:7px;overflow:auto;margin:14px 0;padding-bottom:3px}.tabs button{white-space:nowrap;background:#e8edf6;color:#334155}.tabs button.active{background:var(--blue);color:#fff}.hidden{display:none!important}.stat{background:#f2f6ff;border-radius:12px;padding:14px}.stat strong{display:block;font-size:22px;color:var(--navy);margin-top:4px}.item{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}.item h4{margin:0 0 5px}.small{font-size:12px}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:440px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{background:#f8fafc}.pill{display:inline-block;border-radius:99px;background:#eaf0ff;color:#1745a0;padding:4px 8px;font-size:11px;font-weight:700}.footer{text-align:center;padding:24px;color:var(--muted);font-size:12px}.dashhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.success{color:var(--green);font-weight:700}.error{color:#b91c1c}.checkrow{display:flex;gap:8px;align-items:center;margin:8px 0}.checkrow input{width:auto}
+.password-wrap{position:relative;display:flex;align-items:center}
+.password-wrap input{width:100%}
+.password-wrap .password-eye{position:absolute;right:5px;top:50%;transform:translateY(-50%);padding:7px 9px;background:transparent;color:var(--navy);font-size:18px;line-height:1;border-radius:7px}
+.password-wrap .password-eye:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="brand"><div class="logo">RK</div><div><h1>R.K TUTORIAL</h1><p>LEARN FROM THE TOPPER</p><div class="small" style="margin-top:6px">Master File • Phone-friendly prototype</div></div></header>
+  <div class="notice"><strong>Prototype notice:</strong> This single file runs in your browser and saves demo records on this device. Password checks in this standalone prototype are visible in the file and are not secure authentication. Do not publish it as a real protected app; use a server-side login/database before public launch. Payments and online classes are demo placeholders only.</div>
+
+  <section id="login" class="card">
+    <h2>Welcome to R.K TUTORIAL</h2>
+    <p class="muted">Choose your panel and enter your details.</p>
+    <div class="grid">
+      <button class="rolebtn" onclick="chooseRole('Student')">🎓 Student Panel<span>Name + Class + Phone + shared student password</span></button>
+      <button class="rolebtn" onclick="chooseRole('Teacher')">📚 Teacher Panel<span>Name + Phone + teacher password (no class)</span></button>
+      <button class="rolebtn" onclick="chooseRole('Admin')">🛡️ Admin Panel<span>Name + Phone + admin password (no class)</span></button>
+    </div>
+    <div id="loginForm" class="hidden">
+      <h3 id="loginTitle" style="margin-top:20px">Login</h3>
+      <div class="field"><label for="userName">Name</label><input id="userName" placeholder="Enter your name" autocomplete="name"></div>
+      <div class="field hidden" id="classField"><label for="userClass">Class</label><select id="userClass"><option value="">Select class</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
+      <div class="field"><label for="userPhone">Phone Number</label><input id="userPhone" inputmode="numeric" maxlength="10" placeholder="10-digit phone number"></div>
+      <div class="field">
+        <label for="userPassword">Panel Password</label>
+        <div class="password-wrap">
+          <input id="userPassword" type="password" autocomplete="current-password" placeholder="Enter your panel password" style="padding-right:52px">
+          <button type="button" id="togglePassword" class="password-eye" onclick="togglePasswordVisibility()" aria-label="Show password" title="Show password">👁</button>
+        </div>
+      </div>
+      <div class="row"><button class="primary" onclick="loginNow()">Login</button><button class="secondary" onclick="resetLogin()">Back</button></div>
+      <p id="loginMsg" class="small muted">Enter the password for your selected panel.</p>
+    </div>
+  </section>
+
+  <section id="dashboard" class="hidden">
+    <div class="card">
+      <div class="dashhead"><div><h2 id="welcomeTitle">Dashboard</h2><div id="userInfo" class="muted small"></div></div><button class="danger" onclick="logout()">Logout</button></div>
+      <div class="tabs" id="tabs"></div>
+      <div id="panelContent"></div>
+    </div>
+  </section>
+  <div class="footer">R.K TUTORIAL • “LEARN FROM THE TOPPER” • Single-file demo prototype</div>
+</div>
+<script>
+const staff = [
+ {name:"Rupendra Kumar Sir", classes:"1–12", subjects:"Biology, SST, English, Grammar, Hindi"},
+ {name:"Manisha Singh Madam", classes:"1–9", subjects:"Teaching staff"},
+ {name:"Jitu Sharma Sir", classes:"10–12", subjects:"Teaching staff"},
+ {name:"Abhijit Gupta Sir", classes:"10–12", subjects:"Teaching staff"},
+ {name:"Abhilash Sir", classes:"10–12", subjects:"Teaching staff"},
+ {name:"Vikash Kumar Sir", classes:"10–12", subjects:"Teaching staff"}
+];
+let role="", currentUser=null, activeTab="";
+const $=id=>document.getElementById(id);
+const read=(k,def=[])=>{try{return JSON.parse(localStorage.getItem("rkt_"+k)||JSON.stringify(def))}catch(e){return def}};
+const save=(k,v)=>localStorage.setItem("rkt_"+k,JSON.stringify(v));
+function chooseRole(r){role=r;$("loginForm").classList.remove("hidden");$("loginTitle").textContent=r+" Login";$("classField").classList.toggle("hidden",r!=="Student");$("loginMsg").textContent="Enter the password for your selected panel.";$("userPassword").value=""}
+function togglePasswordVisibility(){
+ const input=$("userPassword"),button=$("togglePassword");
+ const showing=input.type==="password";
+ input.type=showing?"text":"password";
+ button.textContent=showing?"🙈":"👁";
+ button.setAttribute("aria-label",showing?"Hide password":"Show password");
+ button.title=showing?"Hide password":"Show password";
+}
+function resetLogin(){$("loginForm").classList.add("hidden");$("loginMsg").textContent="Enter the password for your selected panel."; $("userPassword").type="password";$("togglePassword").textContent="👁";$("togglePassword").setAttribute("aria-label","Show password");$("togglePassword").title="Show password"}
+function loginNow(){
+ const name=$("userName").value.trim(), phone=$("userPhone").value.trim(), cls=$("userClass").value, password=$("userPassword").value;
+ const passwords={Admin:"rksir121",Teacher:"rktutorials121",Student:"student@121"};
+ if(!role||!name||!/\d{10}/.test(phone)||(role==="Student"&&!cls)){ $("loginMsg").innerHTML='<span class="error">Please enter your name, a valid 10-digit phone number, and select your class if you are a student.</span>';return}
+ if(password!==passwords[role]){ $("loginMsg").innerHTML='<span class="error">Incorrect panel password. Please try again.</span>';return}
+ currentUser={name,phone,role,cls:role==="Student"?cls:""};
+ $("login").classList.add("hidden");$("dashboard").classList.remove("hidden");
+ $("welcomeTitle").textContent=role+" Dashboard";$("userInfo").textContent=name+(role==="Student"?" • Class "+cls:"")+" • "+role;
+ renderTabs();
+}
+function logout(){currentUser=null;role="";$("dashboard").classList.add("hidden");$("login").classList.remove("hidden");$("userName").value="";$("userPhone").value="";$("userPassword").value="";$("userClass").value="";resetLogin()}
+function renderTabs(){
+ const map={Student:["Home","Study Materials","Homework","Online Tests","Online Classes","Messages","Attendance","Fees"],Teacher:["Home","Students","Notes & Homework","Tests","Attendance","Online Classes","Fees Panel","Messages"],Admin:["Home","Staff & Subjects","Class Setup","Online Classes","Fees & Payments","Records","Settings"]};
+ $("tabs").innerHTML=map[currentUser.role].map((t,i)=>`<button class="${i===0?'active':''}" onclick="showTab('${t}',this)">${t}</button>`).join("");
+ showTab(map[currentUser.role][0],$("tabs").firstChild);
+}
+function showTab(tab,btn){activeTab=tab;document.querySelectorAll("#tabs button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");const fn=views[currentUser.role][tab];$("panelContent").innerHTML=fn?fn():"<p>Section coming soon.</p>";}
+function home(){return `<div class="grid"><div class="stat">📘<div>Study Materials</div><strong>${read("notes",[]).length}</strong><span class="small muted">Demo notes added</span></div><div class="stat">📝<div>Homework</div><strong>${read("homework",[]).length}</strong><span class="small muted">Demo homework items</span></div><div class="stat">💳<div>Fee records</div><strong>${read("payments",[]).length}</strong><span class="small muted">Demo payment history</span></div></div><div class="item"><h3>Keep Learning, Keep Growing!</h3><p>Learn regularly, complete homework, and ask your teacher when you need help.</p></div><p class="small muted">All content in this prototype is local demo data.</p>`}
+function notesView(){let items=read("notes",[]);return `<h3>Study Materials & Notes</h3><p class="muted small">Choose class first, then subject. Teachers/admin can add demo notes.</p>${currentUser.role!=="Student"?`<div class="grid"><div class="field"><label>Class</label><select id="noteClass" onchange="syncSubject('noteClass','noteSubject')">${classOptions()}</select></div><div class="field"><label>Subject</label><select id="noteSubject">${subjectOptions()}</select></div></div><div class="field"><label>Title</label><input id="noteTitle" placeholder="e.g. Science Chapter 1 notes"></div><div class="field"><label>Notes / link description</label><textarea id="noteText" placeholder="Enter note details or a link description"></textarea></div><button class="primary" onclick="addNote()">Add Note</button>`:""}<div>${items.filter(n=>currentUser.role!=="Student"||!n.cls||n.cls===currentUser.cls).map(n=>`<div class="item"><h4>${esc(n.title)}</h4><div class="small muted">Class ${esc(n.cls||"All")} • ${esc(n.subject||"General")}</div><p>${esc(n.text)}</p></div>`).join("")||'<p class="muted">No notes added yet.</p>'}</div>`}
+function homeworkView(){let items=read("homework",[]);return `<h3>Homework</h3>${currentUser.role!=="Student"?`<div class="grid"><div class="field"><label>Class</label><select id="hwClass" onchange="syncSubject('hwClass','hwSubject')">${classOptions()}</select></div><div class="field"><label>Subject</label><select id="hwSubject">${subjectOptions()}</select></div></div><div class="field"><label>Homework title</label><input id="hwTitle" placeholder="Homework title"></div><div class="field"><label>Instructions</label><textarea id="hwText" placeholder="Write the homework instructions"></textarea></div><button class="primary" onclick="addHomework()">Publish Homework</button>`:""}${items.filter(n=>currentUser.role!=="Student"||!n.cls||n.cls===currentUser.cls).map(n=>`<div class="item"><h4>${esc(n.title)}</h4><div class="small muted">Class ${esc(n.cls)} • ${esc(n.subject)} • ${esc(n.date)}</div><p>${esc(n.text)}</p>${currentUser.role==="Student"?`<div class="field"><label>Submission note (demo)</label><textarea id="sub-${n.id}" placeholder="Write what you completed"></textarea></div><button class="secondary" onclick="submitHomework('${n.id}')">Submit Demo Work</button>`:""}</div>`).join("")||'<p class="muted">No homework published yet.</p>'}<h3 style="margin-top:18px">My Submissions</h3>${read("submissions",[]).filter(s=>currentUser.role!=="Student"||s.student===currentUser.name).map(s=>`<div class="item">${esc(s.title)} — <span class="success">Submitted</span><div class="small muted">${esc(s.student)} • ${esc(s.date)} • ${esc(s.note)}</div></div>`).join("")||'<p class="muted">No submissions yet.</p>'}`}
+function testsView(){let tests=read("tests",[]);return `<h3>Online MCQ Tests</h3>${currentUser.role!=="Student"?`<div class="field"><label>Test title</label><input id="testTitle" placeholder="e.g. Class 6 Science Quiz"></div><div class="grid"><div class="field"><label>Class</label><select id="testClass" onchange="syncSubject('testClass','testSubject')">${classOptions()}</select></div><div class="field"><label>Subject</label><select id="testSubject">${subjectOptions()}</select></div></div><div class="field"><label>Question</label><input id="testQ" placeholder="Enter a question"></div><div class="grid">${[1,2,3,4].map(i=>`<div class="field"><label>Option ${i}</label><input id="opt${i}" placeholder="Option ${i}"></div>`).join("")}</div><div class="field"><label>Correct option</label><select id="correct"><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option><option value="4">Option 4</option></select></div><button class="primary" onclick="addTest()">Add MCQ</button>`:""}${tests.filter(t=>currentUser.role!=="Student"||!t.cls||t.cls===currentUser.cls).map(t=>`<div class="item"><h4>${esc(t.title)} — Class ${esc(t.cls)} ${esc(t.subject)}</h4><p>${esc(t.q)}</p>${t.opts.map((o,i)=>`<label class="checkrow"><input type="radio" name="ans-${t.id}" value="${i+1}"> ${esc(o)}</label>`).join("")}<button class="secondary" onclick="answerTest('${t.id}')">Check Answer</button><div id="result-${t.id}" class="small"></div></div>`).join("")||'<p class="muted">No MCQs added yet.</p>'}`}
+function attendanceView(){let rows=read("attendance",[]);return `<h3>Attendance</h3>${currentUser.role!=="Student"?`<div class="grid"><div class="field"><label>Student name</label><input id="attName" placeholder="Student name"></div><div class="field"><label>Class</label><select id="attClass">${classOptions()}</select></div><div class="field"><label>Status</label><select id="attStatus"><option>Present</option><option>Absent</option><option>Late</option></select></div></div><button class="primary" onclick="addAttendance()">Save Attendance</button>`:""}<div class="tablewrap"><table><thead><tr><th>Date</th><th>Name</th><th>Class</th><th>Status</th></tr></thead><tbody>${rows.filter(r=>currentUser.role!=="Student"||(r.name===currentUser.name&&r.cls===currentUser.cls)).map(r=>`<tr><td>${esc(r.date)}</td><td>${esc(r.name)}</td><td>${esc(r.cls)}</td><td>${esc(r.status)}</td></tr>`).join("")}</tbody></table></div>`}
+function feesView(){let payments=read("payments",[]),mine=currentUser.role==="Student"?payments.filter(p=>p.student===currentUser.name):payments;let studentPayments=payments.filter(p=>p.type==="Student Fee"||p.type==="Student Fee (Demo)");let totals={};studentPayments.forEach(p=>{let n=p.student||"Unnamed";if(!totals[n])totals[n]={count:0,total:0,last:"—",statuses:[]};totals[n].count++;totals[n].total+=Number(p.amount)||0;totals[n].last=p.date;totals[n].statuses.push(p.status)});return `<h3>${currentUser.role==="Student"?"Fees & Payment History":"Fees / Teacher Payment Panel"}</h3>${currentUser.role==="Student"?`<div class="item"><h4>Pay Now (Demo)</h4><p>This only creates a local demo record. It does not transfer money.</p><div class="field"><label>Amount (₹)</label><input id="payAmount" type="number" min="1" placeholder="Enter amount"></div><button class="primary" onclick="payDemo()">Pay Now — Demo Only</button></div>`:`<div class="grid"><div class="field"><label>Student / teacher name</label><input id="feePerson" placeholder="Name"></div><div class="field"><label>Amount (₹)</label><input id="feeAmount" type="number" min="0" placeholder="Amount"></div><div class="field"><label>Record type</label><select id="feeType"><option>Student Fee</option><option>Teacher Payment</option></select></div><div class="field"><label>Status</label><select id="feeStatus"><option>Pending</option><option>Paid (demo)</option></select></div></div><button class="primary" onclick="addFee()">Save Fee / Payment Record</button><p class="small muted">Teachers/admin can add demo fee records. Payment gateway is not connected.</p><h3 style="margin-top:18px">Admin Fee Register — Student-wise Summary</h3><p class="small muted">Shows each student's recorded fee amounts, number of records, and latest record date. This is local demo data.</p><div class="tablewrap"><table><thead><tr><th>Student</th><th>Records</th><th>Total Recorded</th><th>Latest Record</th></tr></thead><tbody>${Object.entries(totals).map(([n,v])=>`<tr><td>${esc(n)}</td><td>${v.count}</td><td>₹${v.total}</td><td>${esc(v.last)}</td></tr>`).join("")||'<tr><td colspan="4">No student fee records yet.</td></tr>'}</tbody></table></div>`}<h3 style="margin-top:18px">${currentUser.role==="Admin"?"All Fee & Payment Records":currentUser.role==="Teacher"?"Payment Records":"My Payment History"}</h3><div class="tablewrap"><table><thead><tr><th>Date & Time</th><th>Name</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead><tbody>${mine.map(p=>`<tr><td>${esc(p.date)}</td><td>${esc(p.student)}</td><td>${esc(p.type)}</td><td>₹${esc(p.amount)}</td><td>${esc(p.status)}</td></tr>`).join("")||'<tr><td colspan="5">No records yet.</td></tr>'}</tbody></table></div>`}
+function staffView(){return `<h3>Staff & Teaching Assignments</h3><div class="tablewrap"><table><thead><tr><th>Teacher</th><th>Classes</th><th>Subjects / notes</th></tr></thead><tbody>${staff.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.classes)}</td><td>${esc(s.subjects)}</td></tr>`).join("")}</tbody></table></div><p class="small muted">Specific subject allocations for staff other than Rupendra Kumar Sir can be configured later.</p>`}
+function classSetup(){return `<h3>Class & Subject Setup</h3><p>Subject order: select Class first, then Subject.</p><div class="field"><label>Class</label><select id="setupClass" onchange="updateSetupSubjects()">${classOptions()}</select></div><div class="field"><label>Subject</label><select id="setupSubject">${subjectOptions()}</select></div><div id="setupInfo" class="item">Choose a class to see its subject options.</div>`}
+function updateSetupSubjects(){let c=$("setupClass").value;$("setupSubject").innerHTML=subjectOptions(c);$("setupInfo").textContent="Class "+c+" subjects: "+subjectsFor(c).join(", ")}
+function recordsView(){return `<h3>Local Demo Records</h3><p>These records are saved only in this browser on this device.</p><div class="grid">${["notes","homework","tests","attendance","payments","submissions","messages","sessions"].map(k=>`<div class="stat">${k}<strong>${read(k,[]).length}</strong></div>`).join("")}</div><button class="danger" onclick="clearDemo()">Clear All Demo Records</button>`}
+function settingsView(){return `<h3>Settings</h3><p>Brand: R.K TUTORIAL</p><p>Tagline: LEARN FROM THE TOPPER</p><p>Mode: Both (Student and Teacher experience planned)</p><p>Login: Student uses Name + Class + Phone + shared student password; Teacher/Admin use Name + Phone + their panel password. Teacher/Admin do not enter a class.</p><div class="notice">This prototype now supports local online-class scheduling and class-specific subject dropdowns. Cloud database, server-side password protection, teacher-specific permissions, file uploads, and a secure payment gateway must still be connected before public launch.</div>`}
+function messagesView(){return `<h3>Messages / Questions & Answers</h3><div class="field"><label>Message to teacher</label><textarea id="msgText" placeholder="Type your question"></textarea></div><button class="primary" onclick="sendMessage()">Save Demo Message</button><div>${read("messages",[]).filter(m=>currentUser.role!=="Student"||m.from===currentUser.name).map(m=>`<div class="item"><p>${esc(m.text)}</p><div class="small muted">From ${esc(m.from)} • ${esc(m.date)}</div></div>`).join("")||'<p class="muted">No messages yet.</p>'}</div>`}
+function classOptions(){return Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join("")}
+function subjectsFor(c){c=String(c||currentUser?.cls||"6");let base=["Hindi","English","Mathematics","Science","Social Studies"];if(+c<=7)return [...base,"Grammar"];if(+c===8)return [...base,"Sanskrit","AI"];if(+c===9)return [...base,"Grammar"];return ["English","Mathematics","Science","Social Science","Political Science","Commerce","Accountancy","Business Studies","Economics","Biology","Physics","Chemistry","History","Geography","Hindi"]}
+function subjectOptions(c){return subjectsFor(c).map(s=>`<option>${s}</option>`).join("")}
+function syncSubject(classId,subjectId){const c=$(classId),s=$(subjectId);if(!c||!s)return;const old=s.value;s.innerHTML=subjectOptions(c.value);if([...s.options].some(o=>o.value===old))s.value=old}
+function onlineClassesView(){
+ const sessions=read("sessions",[]),isStudent=currentUser.role==="Student";
+ const visible=sessions.filter(s=>!isStudent||String(s.cls)===String(currentUser.cls)).sort((a,b)=>(a.date+" "+a.time).localeCompare(b.date+" "+b.time));
+ return `<h3>Online Classes</h3><p class="small muted">Demo schedule only. Add a real meeting link from your teacher; this prototype does not host video calls.</p>
+ ${!isStudent?`<div class="grid"><div class="field"><label>Class</label><select id="sessionClass" onchange="syncSubject('sessionClass','sessionSubject')">${classOptions()}</select></div><div class="field"><label>Subject</label><select id="sessionSubject">${subjectOptions()}</select></div><div class="field"><label>Date</label><input id="sessionDate" type="date"></div><div class="field"><label>Time</label><input id="sessionTime" type="time"></div></div><div class="field"><label>Teacher / topic</label><input id="sessionTitle" placeholder="e.g. Rupendra Sir — Science chapter revision"></div><div class="field"><label>Meeting link (optional)</label><input id="sessionLink" type="url" placeholder="https://..."></div><button class="primary" onclick="addSession()">Save Class Schedule</button>`:""}
+ <div>${visible.map(s=>`<div class="item"><h4>${esc(s.title||s.subject+" class")}</h4><div class="small muted">Class ${esc(s.cls)} • ${esc(s.subject)} • ${esc(s.date)} ${esc(s.time)}</div>${s.link?`<p><a href="${esc(s.link)}" target="_blank" rel="noopener noreferrer">Open meeting link</a></p>`:"<p class='small muted'>Meeting link not added yet.</p>"}</div>`).join("")||'<p class="muted">No online classes scheduled yet.</p>'}</div>`;
+}
+function addSession(){
+ const cls=$("sessionClass").value,subject=$("sessionSubject").value,date=$("sessionDate").value,time=$("sessionTime").value,title=$("sessionTitle").value.trim(),link=$("sessionLink").value.trim();
+ if(!date||!time){alert("Please choose the class date and time.");return}
+ if(link&&!/^https?:\/\//i.test(link)){alert("Meeting link should start with http:// or https://");return}
+ const a=read("sessions",[]);a.unshift({id:Date.now().toString(),cls,subject,date,time,title:title||subject+" class",link,createdBy:currentUser.name});save("sessions",a);showTab(activeTab);
+}
+function studentsView(){
+ const attendance=read("attendance",[]),subs=read("submissions",[]),fees=read("payments",[]);
+ const names=new Map();
+ attendance.forEach(x=>{const k=(x.name||"").trim()+"|"+x.cls;if(x.name)names.set(k,{name:x.name,cls:x.cls})});
+ subs.forEach(x=>{if(x.student){const k=x.student+"|"+(x.cls||"—");if(!names.has(k))names.set(k,{name:x.student,cls:x.cls||"—"})}});
+ fees.forEach(x=>{if(x.student&&x.type&&x.type.includes("Student Fee")){const k=x.student+"|"+(x.cls||"—");if(!names.has(k))names.set(k,{name:x.student,cls:x.cls||"—"})}});
+ return `<h3>Student Overview</h3><p class="small muted">Only students appearing in local demo records are listed. This is not a full registered-student database.</p><div class="tablewrap"><table><thead><tr><th>Student</th><th>Class</th><th>Attendance records</th><th>Homework submissions</th></tr></thead><tbody>${[...names.values()].map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.cls)}</td><td>${attendance.filter(a=>a.name===s.name&&String(a.cls)===String(s.cls)).length}</td><td>${subs.filter(a=>a.student===s.name).length}</td></tr>`).join("")||'<tr><td colspan="4">No student records yet. Attendance records will appear here.</td></tr>'}</tbody></table></div>${attendanceView()}`;
+}
+
+function addNote(){let a=read("notes",[]);a.unshift({title:$("noteTitle").value.trim()||"Untitled note",cls:$("noteClass").value,subject:$("noteSubject").value,text:$("noteText").value.trim(),date:new Date().toLocaleDateString()});save("notes",a);showTab(activeTab)}
+function addHomework(){let a=read("homework",[]);a.unshift({id:Date.now().toString(),title:$("hwTitle").value.trim()||"Homework",cls:$("hwClass").value,subject:$("hwSubject").value,text:$("hwText").value.trim(),date:new Date().toLocaleDateString()});save("homework",a);showTab(activeTab)}
+function submitHomework(id){let h=read("homework",[]).find(x=>x.id===id);let note=$("sub-"+id)?.value||"Completed";let a=read("submissions",[]);a.unshift({id,title:h?.title||"Homework",student:currentUser.name,cls:currentUser.cls,note,date:new Date().toLocaleString()});save("submissions",a);showTab(activeTab)}
+function addTest(){let title=$("testTitle").value.trim(),q=$("testQ").value.trim(),opts=[1,2,3,4].map(i=>$("opt"+i).value.trim());if(!title||!q||opts.some(o=>!o)){alert("Enter a test title, question, and all four options.");return}let a=read("tests",[]);a.unshift({id:Date.now().toString(),title,cls:$("testClass").value,subject:$("testSubject").value,q,opts,correct:$("correct").value});save("tests",a);showTab(activeTab)}
+function answerTest(id){let t=read("tests",[]).find(x=>x.id===id);let v=document.querySelector(`input[name="ans-${id}"]:checked`);$("result-"+id).textContent=!v?"Choose an option first.":(+v.value===+t.correct?"Correct!":"Not quite — try again.");$("result-"+id).className="small "+(v&&+v.value===+t.correct?"success":"error")}
+function addAttendance(){let name=$("attName").value.trim();if(!name){alert("Enter the student name.");return}let a=read("attendance",[]);a.unshift({name,cls:$("attClass").value,status:$("attStatus").value,date:new Date().toLocaleDateString(),markedBy:currentUser.name});save("attendance",a);showTab(activeTab)}
+function payDemo(){let amt=+$("payAmount").value;if(!(amt>0)){alert("Enter a demo amount greater than zero.");return}let a=read("payments",[]);a.unshift({student:currentUser.name,cls:currentUser.cls,type:"Student Fee (Demo)",amount:amt,status:"Demo recorded — not paid",date:new Date().toLocaleString()});save("payments",a);showTab(activeTab)}
+function addFee(){let person=$("feePerson").value.trim(),amount=Number($("feeAmount").value);if(!person){alert("Enter the student or teacher name.");return}if(!(amount>0)){alert("Enter an amount greater than zero.");return}let a=read("payments",[]);a.unshift({student:person,type:$("feeType").value,amount,status:$("feeStatus").value,date:new Date().toLocaleString(),createdBy:currentUser.name});save("payments",a);showTab(activeTab)}
+function sendMessage(){let text=$("msgText").value.trim();if(!text)return;let a=read("messages",[]);a.unshift({from:currentUser.name,text,date:new Date().toLocaleString()});save("messages",a);showTab(activeTab)}
+function clearDemo(){if(confirm("Delete all R.K TUTORIAL demo records saved in this browser?")){["notes","homework","tests","attendance","payments","submissions","messages","sessions"].forEach(k=>localStorage.removeItem("rkt_"+k));showTab(activeTab)}}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+const views={
+ Student:{"Home":home,"Study Materials":notesView,"Homework":homeworkView,"Online Tests":testsView,"Online Classes":onlineClassesView,"Messages":messagesView,"Attendance":attendanceView,"Fees":feesView},
+ Teacher:{"Home":home,"Students":studentsView,"Notes & Homework":()=>notesView()+homeworkView(),"Tests":testsView,"Attendance":attendanceView,"Online Classes":onlineClassesView,"Fees Panel":feesView,"Messages":messagesView},
+ Admin:{"Home":home,"Staff & Subjects":staffView,"Class Setup":classSetup,"Online Classes":onlineClassesView,"Fees & Payments":feesView,"Records":recordsView,"Settings":settingsView}
+};
+</script>
+</body>
+</html>
